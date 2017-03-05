@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
 import com.josecuentas.kotlin_dagger2.R
 import com.josecuentas.kotlin_dagger2.domain.model.User
 import com.josecuentas.kotlin_dagger2.presenter.UserPresenter
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), UserPresenter.View {
         setContentView(R.layout.activity_main)
         setupRecycler()
         injectPresenter()
+        events()
     }
 
     private fun setupRecycler() {
@@ -46,6 +48,10 @@ class MainActivity : AppCompatActivity(), UserPresenter.View {
         (application as DIApplication).component.inject(this)
         mUserPresenter.view = this
         mUserPresenter.initialize()
+    }
+
+    private fun events() {
+        butAdd.setOnClickListener { mUserPresenter.all() }
     }
 
     override fun showUsers(user: List<User>) {
