@@ -10,10 +10,14 @@ import javax.inject.Inject
 
 class UserPresenter @Inject constructor(val userRepository: UserRepository): Presenter<UserPresenter.View>(){
 
-    override fun initialize() {
-        super.initialize()
+    fun all() {
         view?.hideLoading()
         view?.showUsers(userRepository.all())
+    }
+
+    override fun initialize() {
+        super.initialize()
+        all()
     }
 
     override fun terminate() {
