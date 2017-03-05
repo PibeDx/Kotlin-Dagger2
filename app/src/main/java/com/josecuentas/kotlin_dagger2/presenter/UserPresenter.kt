@@ -13,7 +13,7 @@ class UserPresenter @Inject constructor(val userRepository: UserRepository): Pre
     override fun initialize() {
         super.initialize()
         view?.hideLoading()
-        view?.showUsers(userRepository.all)
+        view?.showUsers(userRepository.all())
     }
 
     override fun terminate() {

@@ -16,7 +16,4 @@ class DIApplication: Application() {
         super.onCreate()
         component = DaggerUserComponent.builder().rootModule(RootModule(this)).build()
     }
-
-
-
 }

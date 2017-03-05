@@ -14,21 +14,20 @@ class UserDataSource :DataSource {
         mUserList = ArrayList<User>()
     }
 
-    override val provideUserList: List<User>
-        get() {
-            addUser(userJuan)
-            addUser(userJose)
+    override fun provideUserList(): List<User> {
+            addUser(userJuan())
+            addUser(userJose())
             return mUserList
-        }
-
-    private val userJuan: User
-        get() = User("Juan", "Perez", 18)
-
-    private val userJose: User
-        get() = User("Jose", "Cuentas", 23)
-
-    private fun addUser(user:User) {
-        mUserList.add(user)
     }
+
+    private fun userJuan(): User
+        = User("Juan", "Perez", 18)
+
+    private fun userJose(): User
+        = User("Jose", "Cuentas", 23)
+
+    private fun addUser(user:User)
+        = mUserList.add(user)
+
 
 }

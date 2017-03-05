@@ -11,9 +11,8 @@ class UserRepository @Inject constructor(dataSource: DataSource) : Repository {
     private var mUserList: List<User>
 
     init {
-        mUserList = dataSource.provideUserList
+        mUserList = dataSource.provideUserList()
     }
 
-    override val all: List<User>
-        get() = mUserList
+    override fun all(): List<User> = mUserList
 }

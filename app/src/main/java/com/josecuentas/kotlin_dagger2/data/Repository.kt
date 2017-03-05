@@ -7,5 +7,5 @@ import com.josecuentas.kotlin_dagger2.domain.model.User
  */
 
 interface Repository {
-    val all: List<User>
+    fun all(): List<User>
 }
