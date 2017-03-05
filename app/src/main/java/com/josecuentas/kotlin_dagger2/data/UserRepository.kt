@@ -1,12 +1,13 @@
 package com.josecuentas.kotlin_dagger2.data
 
 import com.josecuentas.kotlin_dagger2.domain.model.User
+import javax.inject.Inject
 
 /**
  * Created by iPibeDx on 4/03/17.
  */
 
-class UserRepository(dataSource: DataSource) : Repository {
+class UserRepository @Inject constructor(dataSource: DataSource) : Repository {
     private var mUserList: List<User>
 
     init {

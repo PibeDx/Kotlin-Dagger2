@@ -9,11 +9,13 @@ import com.josecuentas.kotlin_dagger2.data.UserDataSource
 import com.josecuentas.kotlin_dagger2.data.UserRepository
 import com.josecuentas.kotlin_dagger2.domain.model.User
 import com.josecuentas.kotlin_dagger2.presenter.UserPresenter
+import com.josecuentas.kotlin_dagger2.view.DIApplication
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), UserPresenter.View {
 
     var TAG = "MainActivity"
-    var mUserPresenter: UserPresenter? = null
+    @Inject lateinit var mUserPresenter: UserPresenter
     var mTviMessage: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +30,15 @@ class MainActivity : AppCompatActivity(), UserPresenter.View {
     }
 
     private fun injectPresenter() {
-        var userDataSource = UserDataSource()
+        /*var userDataSource = UserDataSource()
         var userRepository = UserRepository(userDataSource)
         mUserPresenter = UserPresenter(userRepository)
         mUserPresenter!!.view = this
-        mUserPresenter!!.initialize()
+        mUserPresenter!!.initialize()*/
+
+        (application as DIApplication).component.inject(this)
+        mUserPresenter.view = this
+        mUserPresenter.initialize()
     }
 
     override fun showUsers(user: List<User>) {
