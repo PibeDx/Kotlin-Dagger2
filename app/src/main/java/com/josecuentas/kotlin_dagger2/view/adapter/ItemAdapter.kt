@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.row_item.view.*
 /**
  * Created by iPibeDx on 4/03/17.
  */
-class ItemAdapter constructor(var values: List<User> = emptyList()) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+class ItemAdapter constructor(var values: MutableList<User> = ArrayList()) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         var view: View = LayoutInflater.from(parent?.context).inflate(R.layout.row_item, parent, false)
@@ -24,6 +24,11 @@ class ItemAdapter constructor(var values: List<User> = emptyList()) : RecyclerVi
 
     override fun getItemCount(): Int {
         return values.size
+    }
+
+    fun addItem(user: User) {
+        values.add(user)
+        notifyItemInserted(values.size)
     }
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var tviItem = view.tviItem

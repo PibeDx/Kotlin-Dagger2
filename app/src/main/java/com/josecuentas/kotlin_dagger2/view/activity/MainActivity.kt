@@ -2,7 +2,9 @@ package com.josecuentas.kotlin_dagger2.view.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.josecuentas.kotlin_dagger2.R
 import com.josecuentas.kotlin_dagger2.domain.model.User
@@ -30,6 +32,8 @@ class MainActivity : AppCompatActivity(), UserPresenter.View {
         llm.orientation = LinearLayoutManager.VERTICAL
         rviContainer.layoutManager = llm
         rviContainer.setHasFixedSize(true)
+        rviContainer.itemAnimator = DefaultItemAnimator()
+        rviContainer.adapter = mItemAdapter
     }
 
     private fun injectPresenter() {
@@ -46,8 +50,7 @@ class MainActivity : AppCompatActivity(), UserPresenter.View {
 
     override fun showUsers(user: List<User>) {
         Log.d(TAG, "showUsers() called: user: " + user)
-        mItemAdapter.values = user
-        rviContainer.adapter = mItemAdapter
+        user.forEach{mItemAdapter.addItem(it)}
         //TODO: show in TextView
         tviMessage.text = user.toString()
     }
