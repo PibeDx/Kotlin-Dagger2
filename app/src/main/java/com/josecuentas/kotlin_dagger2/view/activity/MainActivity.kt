@@ -3,20 +3,18 @@ package com.josecuentas.kotlin_dagger2.view.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import com.josecuentas.kotlin_dagger2.R
-import com.josecuentas.kotlin_dagger2.data.UserDataSource
-import com.josecuentas.kotlin_dagger2.data.UserRepository
 import com.josecuentas.kotlin_dagger2.domain.model.User
 import com.josecuentas.kotlin_dagger2.presenter.UserPresenter
 import com.josecuentas.kotlin_dagger2.view.DIApplication
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), UserPresenter.View {
 
     var TAG = "MainActivity"
     @Inject lateinit var mUserPresenter: UserPresenter
-    var mTviMessage: TextView? = null
+    //var mTviMessage: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +24,7 @@ class MainActivity : AppCompatActivity(), UserPresenter.View {
     }
 
     private fun injectView() {
-        mTviMessage = findViewById(R.id.tviMessage) as TextView
+        //mTviMessage = findViewById(R.id.tviMessage) as TextView
     }
 
     private fun injectPresenter() {
@@ -43,7 +41,8 @@ class MainActivity : AppCompatActivity(), UserPresenter.View {
 
     override fun showUsers(user: List<User>) {
         Log.d(TAG, "showUsers() called: user: " + user)
-        mTviMessage!!.text = user.toString()
+        //mTviMessage!!.text = user.toString()
+        tviMessage.text = user.toString()
     }
 
     override fun hideLoading() {
